@@ -17,4 +17,4 @@ The poem will resemble you.
 And there you are – an infinitely original author of charming sensibility, even though unappreciated by the vulgar herd.
 ```
 ## Usage
-This is a function that will take a string of any length and convert it into a Dadaist poem. Essnetially rearranging the words into a random order. There is an option to keep the same line spacings in order to get a 'fold-in' rather than just a 'cut-up'.
+This is a function that will take a string of any length and convert it into a Dadaist poem. Essentially rearranging the words into a random order.
