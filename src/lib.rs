@@ -2,7 +2,7 @@ use rand::seq::SliceRandom;
 use rand::thread_rng;
 use regex::Regex;
 
-pub fn dada(text: &str) {
+pub fn dada(text: &str) -> String {
     let not_words_re = Regex::new(r"\W").unwrap();
     let words_re = Regex::new(r"\w+").unwrap();
     let template_re = Regex::new("~").unwrap();
