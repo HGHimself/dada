@@ -1,5 +1,5 @@
 [package]
-name = "dada"
+name = "dada-poem-generator"
 version = "0.1.0"
 authors = ["HG King <hgmaxwellking@gmail.com>"]
 description = "Dadaist Poem Generator"
