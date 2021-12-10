@@ -1,5 +1,4 @@
-use rand::thread_rng;
-use rand::Rng;
+use getrandom;
 use regex::Regex;
 
 extern crate wasm_bindgen;
@@ -11,6 +10,10 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
 pub fn dada(text: &str) -> String {
+    if text == "" {
+        return "".to_string();
+    }
+
     let not_words_re = Regex::new(r"[^0-9A-Za-z_']").unwrap();
     let words_re = Regex::new(r"[0-9A-Za-z_']+").unwrap();
     let template_re = Regex::new("~").unwrap();
@@ -32,11 +35,10 @@ pub fn dada(text: &str) -> String {
 }
 
 fn shuffle(mut array: Vec<&str>) -> Vec<&str> {
-    let mut rng = thread_rng();
     let mut i = array.len() - 1;
 
     while i != 0 {
-        let j = rng.gen::<usize>() % (i + 1);
+        let j = random().unwrap() as usize % (i + 1);
         let hold = array[j];
         array[j] = array[i];
         array[i] = hold;
@@ -45,15 +47,28 @@ fn shuffle(mut array: Vec<&str>) -> Vec<&str> {
     array
 }
 
+pub fn random() -> Result<f32, getrandom::Error> {
+    let mut buf = [0u8; 1];
+    getrandom::getrandom(&mut buf)?;
+    Ok(buf[0] as f32 / 255.0)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_dada() {
-        assert_eq!(
+        assert_ne!(
+            dada("He don't know what you're talking about, man"),
+            String::from("He don't know what you're talking about, man")
+        );
+
+        assert_ne!(
             dada("He don't know what you're talking about, man"),
             String::from("")
         );
+
+        assert_eq!(dada(""), String::from(""));
     }
 }

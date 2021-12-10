@@ -1,6 +1,6 @@
 [package]
 name = "dada-poem-generator"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["HG King <hgmaxwellking@gmail.com>"]
 description = "Dadaist Poem Generator"
 license = "MIT/Apache-2.0"
@@ -17,7 +17,7 @@ lto = true
 opt-level = 'z'
 
 [dependencies]
-rand = { version = "0.6.5", features = ["wasm-bindgen"] }
+getrandom = { version="0.1.14", features = ["wasm-bindgen"]}
 regex = "1.5.4"
 wasm-bindgen = "0.2"
 wee_alloc = "0.4.5"
